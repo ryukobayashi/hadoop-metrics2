@@ -17,7 +17,7 @@ gem install hadoop-metrics2
 ```
 require 'hadoop_metrics2/resource_manager'
 
-rm = HadoopMetrics2::ResourceManager.new('localhost', 50030, true)
+rm = HadoopMetrics2::ResourceManager.new('localhost', 8088, true)
 puts JSON.pretty_generate(nm.application)
 ```
 
@@ -26,7 +26,7 @@ puts JSON.pretty_generate(nm.application)
 ```
 require 'hadoop_metrics2/node_manager'
 
-nm = HadoopMetrics::NodeManager.new('localhost', 50060, false)
+nm = HadoopMetrics::NodeManager.new('localhost', 8042, false)
 puts JSON.pretty_generate(nm.shuffle_output)
 ```
 
