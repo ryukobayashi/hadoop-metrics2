@@ -13,8 +13,8 @@ module HadoopMetrics2
 
     def application(opts = {})
       column = get_column(opts)
-      column = HadoopMetrics.to_snake_case(column) if @snake_case
-      group_by('clusterMetrics', column, get_force(opts))
+      column = HadoopMetrics2.to_snake_case(column) if @snake_case
+      metrics(get_force(opts))
     end
 
     private
