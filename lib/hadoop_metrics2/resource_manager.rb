@@ -19,7 +19,7 @@ module HadoopMetrics2
 
     def fairscheduler_active_apps(opts = {})
       targets = scheduler(get_force(opts))['scheduler']['schedulerInfo']['rootQueue']['childQueues']
-      return fs nil if fs.nil?
+      return targets nil if targets.nil?
 
       each_apps = {}
       targets.each { |target|
