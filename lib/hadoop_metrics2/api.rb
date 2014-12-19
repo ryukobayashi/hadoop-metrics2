@@ -11,6 +11,7 @@ module HadoopMetrics2
       snake_case = opts.has_key?(:snake_case) ? opts[:snake_case] : true
       @name = opts[:name] || host
       @metrics_cache = nil
+      @scheduler_cache = nil
     end
 
     attr_reader :name
@@ -24,7 +25,16 @@ module HadoopMetrics2
       @metrics_cache
     end
 
-    GCNameMap = { 
+    def scheduler(force = true)
+      if !@scheduler_cache.nil? and !force
+        return @scheduler_cache
+      end
+
+      @scheduler_cache = HadoopMetrics2.get_response(URI("http://#{@endpoint}/ws/v1/cluster/scheduler"))
+      @scheduler_cache
+    end
+
+    GCNameMap = {
       'PS Scavenge' => 'minor',  # for backward compatibility
       'PS MarkSweep' => 'major', # for backward compatibility
       'ConcurrentMarkSweep' => 'c_mark_sweep',

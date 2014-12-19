@@ -17,6 +17,19 @@ module HadoopMetrics2
       metrics(get_force(opts))['clusterMetrics']
     end
 
+    def fairscheduler_active_apps(opts = {})
+      targets = scheduler(get_force(opts))['scheduler']['schedulerInfo']['rootQueue']['childQueues']
+      return fs nil if fs.nil?
+
+      each_apps = {}
+      targets.each { |target|
+        name = target['queueName'].gsub(/root./, '')
+        each_apps[name] ||= 0
+        each_apps[name] += target['numActiveApps']
+      }
+      each_tasks
+    end
+
     private
 
     def get_column(opts)
