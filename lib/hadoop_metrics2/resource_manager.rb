@@ -27,7 +27,7 @@ module HadoopMetrics2
         each_apps[name] ||= 0
         each_apps[name] += target['numActiveApps']
       }
-      each_tasks
+      each_apps
     end
 
     private
