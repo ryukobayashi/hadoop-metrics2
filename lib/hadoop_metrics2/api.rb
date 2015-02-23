@@ -8,7 +8,7 @@ module HadoopMetrics2
       @endpoint = "#{host}:#{port}"
       @metrics_endpoint = master ?
         URI("http://#{@endpoint}/ws/v1/cluster/metrics") : URI("http://#{@endpoint}/ws/v1/node/info")
-      snake_case = opts.has_key?(:snake_case) ? opts[:snake_case] : true
+      @snake_case = opts.has_key?(:snake_case) ? opts[:snake_case] : true
       @name = opts[:name] || host
       @metrics_cache = nil
       @scheduler_cache = nil
