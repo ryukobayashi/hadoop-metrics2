@@ -12,8 +12,6 @@ module HadoopMetrics2
     end
 
     def application(opts = {})
-      column = get_column(opts)
-      column = HadoopMetrics2.to_snake_case(column) if @snake_case
       metrics(get_force(opts))['clusterMetrics']
     end
 
@@ -28,12 +26,6 @@ module HadoopMetrics2
         each_apps[name] += target['numActiveApps']
       }
       each_apps
-    end
-
-    private
-
-    def get_column(opts)
-      opts[:column]
     end
   end
 end
